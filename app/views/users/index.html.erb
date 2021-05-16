@@ -11,6 +11,7 @@
             <div class="card-body">
               <h5 class="card-title">
                 imagen
+                <%# <%=gravatar_for%>
               </h5>
               <p class="card-text"><%= pluralize(user.articles.count,"artcile") %></p>
               <%= link_to 'View profile', user, class:"btn btn-outline-success" %>
