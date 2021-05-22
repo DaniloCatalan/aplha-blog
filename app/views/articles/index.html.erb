@@ -1,2 +1,8 @@
 <h1 class="text-center mt-4">Listing all articles</h1>
+<div class="row justify-content-md-center mt-4">
+    <%== pagy_bootstrap_nav(@pagy).html_safe %>
+</div>
 <%= render 'article'%>
+<div class="row justify-content-md-center mb-2">
+    <%== pagy_bootstrap_nav(@pagy).html_safe %>
+</div>

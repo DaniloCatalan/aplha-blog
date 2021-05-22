@@ -1,5 +1,4 @@
 <h1 class="text-center mt-4"><%= @user.username %>'s profile</h1>
-
 <%# <%= gravatar_for() %> 
 <div class="text-center">imagen</div>
 
@@ -7,7 +6,11 @@
 <%= link_to "Edit your profile", edit_user_path(@user), class: "btn btn-outline-info" %>
 </div>
 <h3 class="text-center mt-4">Articles</h3>
-
+<div class="row justify-content-md-center mt-4">
+    <%== pagy_bootstrap_nav(@pagy).html_safe %>
+</div>
 <%= render 'articles/article'%>
-
+<div class="row justify-content-md-center mt-4">
+    <%== pagy_bootstrap_nav(@pagy).html_safe %>
+</div>
     
