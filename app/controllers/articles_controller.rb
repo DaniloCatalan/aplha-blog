@@ -1,13 +1,13 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: [:show, :index]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+
   def show
   end
 
 	def index
-		#@articles = Article.paginate(page: params[:page], per_page: 30)
-    #@articles = Article.paginate(page: params[:page])
     @pagy, @articles = pagy(Article.all)
-
 	end
 
 	def new
@@ -44,11 +44,18 @@ class ArticlesController < ApplicationController
 
   private
 
-  def set_article
-    @article = Article.find(params[:id])
-  end
+    def set_article
+      @article = Article.find(params[:id])
+    end
 
-  def article_params
-    params.require(:article).permit(:title, :description)
-  end
+    def article_params
+      params.require(:article).permit(:title, :description)
+    end
+
+    def require_same_user
+      if current_user != @article.user
+        flash[:alert] = "You can only edit o delete your own article"
+        redirect_to @article
+      end
+    end
 end
