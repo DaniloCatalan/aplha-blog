@@ -20,8 +20,10 @@ class CategoriesController < ApplicationController
   end
 
   def show
-      @category = Category.find(params[:id])
+    @category = Category.find(params[:id])
+    @pagy, @articles = pagy(@category.articles,items: 5)
   end
+
   private
     def category_params
       params.require(:category).permit(:name)

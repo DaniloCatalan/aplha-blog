@@ -1,1 +1,14 @@
 <h1 class="text-center mt-4">Category: <%= @category.name %></h1>
+<div class="text-center mt-4">
+    <% if logged_in? && @user == current_user.admin?%>
+        <%= link_to "Edit category name", edit_category_path(@category), class: "btn btn-outline-info" %>
+    <% end%>
+</div>
+<h3 class="text-center mt-4">Articles</h3>
+<div class="row justify-content-md-center mt-4">
+    <%== pagy_bootstrap_nav(@pagy).html_safe %>
+</div>
+<%= render 'articles/article'%>
+<div class="row justify-content-md-center mt-4">
+    <%== pagy_bootstrap_nav(@pagy).html_safe %>
+</div>
